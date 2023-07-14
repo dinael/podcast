@@ -46,7 +46,7 @@ const PodcastImage = styled.img`
   background: var(--podcast-img-background, --color-background-base);
   border: 1px solid var(--podcast-img-border-color, var(--color-main));
 `
-const PodcastDescription = styled.p`
+const PodcastDescription = styled.div`
   margin: 0;
 `
 

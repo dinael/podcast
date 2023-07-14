@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const PodcastDetailHeaderContainer = styled.header`
   display: grid;
-  align-items: center;
+  gap: 1rem 0;
+  place-content: start;
 `
 
 const PodcastTitle = styled.h2`
@@ -14,6 +15,7 @@ const PodcastCover = styled.img`
   border-radius: 100rem;
   margin-inline: auto;
   order: -1;
+  margin-block-end: 1rem;
 
   transition: border-radius .5s ease-in-out;
 

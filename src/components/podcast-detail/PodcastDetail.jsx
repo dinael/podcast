@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import PodcastDetailHeader from './PodcastDetailHeader';
-import EpisodesList from '../episodes/EpisodesList'
+import EpisodesList from '../episodes-list/EpisodesList'
 
 const PodcastDetailContainer = styled.section`
   display: grid;

@@ -72,6 +72,7 @@ const ListEpisodes = ({ episodes }) => {
               </EpisodeTableHeaderTitle>
               <EpisodeTableHeaderCol>Date</EpisodeTableHeaderCol>
               <EpisodeTableHeaderCol>Duration</EpisodeTableHeaderCol>
+              <EpisodeTableHeaderCol>Play</EpisodeTableHeaderCol>
             </tr>
           </EpisodeTableHeader>
           <tbody>
@@ -85,6 +86,14 @@ const ListEpisodes = ({ episodes }) => {
                 </EpisodeTableCol>
                 <EpisodeTableCol>
                   <EpisodeDuration duration={episode.trackTimeMillis} />
+                </EpisodeTableCol>
+                <EpisodeTableCol width={'200px'}>
+                  <audio controls>
+                    <source
+                      src={`${episode.episodeUrl}`}
+                      type="audio/mpeg" />
+                    Your browser does not support the audio tag.
+                  </audio>
                 </EpisodeTableCol>
               </EpisodeTableRow>
             ))}

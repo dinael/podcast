@@ -19,6 +19,7 @@ export const PodcastInputField = styled.input`
 `
 
 const PodcastSearch = ({
+  type,
   label,
   value,
   placeholder,
