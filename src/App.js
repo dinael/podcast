@@ -17,6 +17,9 @@ function App() {
             <Route
               path="/"
               element={<PodcastList url={podcastAPI}/>} />
+            <Route
+              path="/podcast/:id"
+              element={<PodcastDetail />} />
           </Routes>
         </Router>
       </div>
