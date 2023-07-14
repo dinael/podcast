@@ -32,31 +32,47 @@ export const EpisodeTableHeaderTitle = styled.th`
 export const EpisodeTableHeaderCol = styled.th``
 
 export const EpisodeTableRow = styled.tr`
-  transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out, color .3s ease-in-out;
 
   &:nth-child(even) {
-    background: var(--episode-table-row, var(--color-main-005));
+    background: var(--episode-table-row, var(--color-main-010));
   }
 
   &:hover {
-    background: var(--color-main-010);
+    color: white;
+    background: var(--color-main-040);
+
+    a {
+      color: white;
+    }
   }
 `
 export const EpisodeTableCol = styled.td`
   padding: 0.5rem;
 `
 
-export const EpisodeTableColumnTitle = styled.td`
+export const EpisodeTableColTitle = styled.td`
   text-align: left;
+  padding: 0.75rem 0.5rem 0.75rem 1rem;
+`
+
+export const EpisodeTableColPlayer = styled.td`
+  text-align: right;
   padding: 0.75rem 0.5rem;
 `
 
 export const EpisodeTitleLink = styled(Link)`
+  color: var(--color-main);
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
   }
+`
+
+export const EpisodePlayer = styled.audio`
+  inline-size: 120px;
+  accent-color: red;
 `
 
 const ListEpisodes = ({ episodes }) => {
@@ -78,23 +94,23 @@ const ListEpisodes = ({ episodes }) => {
           <tbody>
             {episodes.slice(1).map((episode) => (
               <EpisodeTableRow key={episode.trackName}>
-                <EpisodeTableColumnTitle>
+                <EpisodeTableColTitle>
                   <EpisodeTitleLink to={episode.trackViewUrl}>{episode.trackName}</EpisodeTitleLink>
-                </EpisodeTableColumnTitle>
+                </EpisodeTableColTitle>
                 <EpisodeTableCol>
                   <EpisodeDate release={episode.releaseDate} />
                 </EpisodeTableCol>
                 <EpisodeTableCol>
                   <EpisodeDuration duration={episode.trackTimeMillis} />
                 </EpisodeTableCol>
-                <EpisodeTableCol width={'200px'}>
-                  <audio controls>
+                <EpisodeTableColPlayer>
+                  <EpisodePlayer controls>
                     <source
                       src={`${episode.episodeUrl}`}
                       type="audio/mpeg" />
                     Your browser does not support the audio tag.
-                  </audio>
-                </EpisodeTableCol>
+                  </EpisodePlayer>
+                </EpisodeTableColPlayer>
               </EpisodeTableRow>
             ))}
           </tbody>

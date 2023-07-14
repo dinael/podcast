@@ -4,6 +4,7 @@ const PodcastDetailHeaderContainer = styled.header`
   display: grid;
   gap: 1rem 0;
   place-content: start;
+  justify-content: center;
 `
 
 const PodcastTitle = styled.h2`
@@ -12,16 +13,11 @@ const PodcastTitle = styled.h2`
 `
 
 const PodcastCover = styled.img`
-  border-radius: 100rem;
   margin-inline: auto;
   order: -1;
   margin-block-end: 1rem;
 
   transition: border-radius .5s ease-in-out;
-
-  &:hover {
-    border-radius: 0;
-  }
 `
 
 const PodcastDetailList = styled.dl`

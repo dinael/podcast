@@ -16,7 +16,6 @@ const PodcastDetailContainer = styled.section`
   }
 `
 
-
 const PodcastDetail = () => {
   const { id } = useParams();
   const [error, setError] = useState(null);
@@ -58,7 +57,7 @@ const PodcastDetail = () => {
         imgAlt={podcastItem[0].collectionName}
         author={podcastItem[0].artistName}
         genre={podcastItem[0].primaryGenreName}
-        description={podcastItem[1].shortDescription}
+        description={podcastItem[1].description}
         date={podcastItem[0].releaseDate}
       />
       <EpisodesList episodes={podcastItem}/>

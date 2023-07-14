@@ -98,6 +98,8 @@ const PodcastList = ({url}) => {
      return <div>Loading...</div>
   }
 
+  console.log(items)
+
   return (
     <>
       <SearchRegion role='search'>
