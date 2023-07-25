@@ -1,12 +1,13 @@
-import styled from 'styled-components'
-
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { usePodcastDetailContext } from '../podcast-detail-context/PodcastDetailContext';
+
+import styled from 'styled-components';
 
 import PodcastDetailHeader from './PodcastDetailHeader';
-import EpisodesList from '../episodes-list/EpisodesList'
+import EpisodesList from '../episodes-list/EpisodesList';
 
-const PodcastDetailContainer = styled.section`
+const PodcastDetailContainer = styled.article`
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 2fr;
@@ -14,55 +15,38 @@ const PodcastDetailContainer = styled.section`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const PodcastDetail = () => {
-  const { id } = useParams();
-  const [error, setError] = useState(null);
-  const [podcastItem, setPodcastItem] = useState(null);
+  const { podcastId } = useParams();
+  const { fetchData, error, podcastItem, detail } = usePodcastDetailContext();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=10`);
-        const data = await response.json();
-
-        data.results && data.results.length > 0
-          ? setPodcastItem(data.results)
-          : setError('No se encontraron resultados');
-
-      } catch (error) {
-        setError('No se encuentran los detalles del episodio');
-      }
-    };
-
-    fetchData();
-  }, [id]);
+    fetchData(podcastId);
+  }, [podcastId, fetchData]);
 
   if (error) {
     return <p>Error: {error}</p>;
   }
 
-  if (!podcastItem) {
+  if (!podcastItem || podcastItem.length === 0) {
     return <p>Loading...</p>;
   }
-
-  console.log(podcastItem)
 
   return (
     <PodcastDetailContainer>
       <PodcastDetailHeader
-        title={podcastItem[0].collectionName}
-        imgSrc={podcastItem[0].artworkUrl100}
-        imgAlt={podcastItem[0].collectionName}
-        author={podcastItem[0].artistName}
-        genre={podcastItem[0].primaryGenreName}
-        description={podcastItem[1].description}
-        date={podcastItem[0].releaseDate}
+        title={ detail.title }
+        imgSrc={ detail.imgSrc }
+        imgAlt={ detail.imgAlt }
+        author={ detail.author }
+        genre={ detail.genre }
+        description={ detail.description }
+        date={detail.date }
       />
-      <EpisodesList episodes={podcastItem}/>
+      <EpisodesList episodes={ podcastItem } />
     </PodcastDetailContainer>
   );
 };
 
-export default PodcastDetail
+export default PodcastDetail;

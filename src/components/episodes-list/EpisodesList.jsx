@@ -92,21 +92,24 @@ const ListEpisodes = ({ episodes }) => {
             </tr>
           </EpisodeTableHeader>
           <tbody>
-            {episodes.slice(1).map((episode) => (
-              <EpisodeTableRow key={episode.trackName}>
+            {episodes.slice(1).map((episode, index) => (
+              <EpisodeTableRow key={episode?.trackName}>
                 <EpisodeTableColTitle>
-                  <EpisodeTitleLink to={episode.trackViewUrl}>{episode.trackName}</EpisodeTitleLink>
+                  <EpisodeTitleLink
+                    to={`episode/${episode.trackId}`}>
+                    {episode?.trackName}
+                  </EpisodeTitleLink>
                 </EpisodeTableColTitle>
                 <EpisodeTableCol>
-                  <EpisodeDate release={episode.releaseDate} />
+                  <EpisodeDate release={episode?.releaseDate} />
                 </EpisodeTableCol>
                 <EpisodeTableCol>
-                  <EpisodeDuration duration={episode.trackTimeMillis} />
+                  <EpisodeDuration duration={episode?.trackTimeMillis} />
                 </EpisodeTableCol>
                 <EpisodeTableColPlayer>
                   <EpisodePlayer controls>
                     <source
-                      src={`${episode.episodeUrl}`}
+                      src={`${episode?.episodeUrl}`}
                       type="audio/mpeg" />
                     Your browser does not support the audio tag.
                   </EpisodePlayer>

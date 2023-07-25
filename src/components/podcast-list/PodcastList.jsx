@@ -1,18 +1,19 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
+import { usePodcastContext } from '../podcast-context/PodcastContext'
 
 import PodcastSearch from '../podcast-search/PodcastSearch'
 import PodcastItem from '../podcast-item/PodcastItem'
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
   gap: 3rem 1rem;
   width: 100%;
   padding: 3.5rem 0;
   margin: 0;
-  border-block-start: 1px solid hsl(0, 0%, 90%);
+  border-block-start: 0.0625rem solid hsl(0, 0%, 90%);
 `
 const ListItem = styled.li`
   display: flex;
@@ -40,44 +41,10 @@ const SearchResultLength= styled.p`
   background: var(--color-main);
 `
 
-const PodcastList = ({url}) => {
-  const [items, setItems] = useState([])
-  const [images, setImages] = useState([])
+const PodcastList = () => {
+  const { items } = usePodcastContext()
   const [SearchPodcast, setSearchPodcast] = useState('')
   const [filteredPodcast, setFilteredPodcast] = useState([])
-
-  const UrlApi = url
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const storedData = localStorage.getItem('podcastData');
-      const storedTime = localStorage.getItem('podcastTime');
-      const currentTime = new Date().getTime();
-
-      const shouldFetchData = !(storedData && storedTime && currentTime - parseInt(storedTime) < 24 * 60 * 60 * 1000);
-
-      if (shouldFetchData) {
-        try {
-          const response = await fetch(UrlApi);
-          const data = await response.json();
-          const PodcastItems = data.feed.entry;
-          setItems(PodcastItems);
-          const PodcastImages = PodcastItems.map((item) => item['im:image'][0].label);
-          setImages(PodcastImages);
-
-          localStorage.setItem('podcastData', JSON.stringify(PodcastItems));
-          localStorage.setItem('podcastImages', JSON.stringify(PodcastImages));
-          localStorage.setItem('podcastTime', currentTime.toString());
-        } catch (error) {
-          console.log('Error fetching data:', error);
-        }
-      } else {
-        setItems(JSON.parse(storedData));
-      }
-    };
-
-    fetchData();
-  }, [UrlApi, images])
 
   useEffect(() => {
     const filteredPodcast = items.filter((item) =>
@@ -90,15 +57,9 @@ const PodcastList = ({url}) => {
     setSearchPodcast(event.target.value)
   };
 
-  if (!url) {
-    return <p>No se encontraron resultados.</p>;
-  }
-
   if (!items) {
      return <div>Loading...</div>
   }
-
-  console.log(items)
 
   return (
     <>
@@ -109,7 +70,7 @@ const PodcastList = ({url}) => {
           value={SearchPodcast}
           type={'search'}
           onChange={podcastSearch} />
-        <SearchResultLength>
+        <SearchResultLength aria-label="Resultado de total de búsqueda:">
           {filteredPodcast.length}
         </SearchResultLength>
       </SearchRegion>
