@@ -1,5 +1,5 @@
-function formatDate(release) {
-    const date = new Date(release)
+function formatDate(rawDate) {
+    const date = new Date(rawDate)
     const day = date.getDate()
     const month = date.getMonth() + 1
     const year = date.getFullYear()
@@ -7,12 +7,12 @@ function formatDate(release) {
     return `${day}/${month}/${year}`
 }
 
-function EpisodeDuration({ release }) {
-    const formattedDate = formatDate(release)
+function DateFormatted({ date }) {
+    const formattedDate = formatDate(date)
 
     return (
         <>{formattedDate}</>
-    );
+    )
 }
 
-export default EpisodeDuration
+export default DateFormatted

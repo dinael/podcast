@@ -1,21 +1,4 @@
-import styled from 'styled-components'
-
-export const PodcastSearchField = styled.label`
-  display:grid;
-`
-
-export const PodcastLabel = styled.span`
-  display: flex;
-  flex: 1 0 100%;
-  padding-block-end: 0.25rem;
-`
-
-export const PodcastInputField = styled.input`
-  display: flex;
-  padding: 0.75rem 0.5rem;
-  border: 0;
-  border-block-end: 1px solid var(--color-main);
-`
+import { Search } from './PodcastSearch.style.js'
 
 const PodcastSearch = ({
   type,
@@ -26,18 +9,18 @@ const PodcastSearch = ({
   onChange }) => {
 
   return (
-    <PodcastSearchField className={className}>
-      <PodcastLabel>
+    <Search.Container className={className}>
+      <Search.Label>
         {`${label}:`}
-      </PodcastLabel>
-      <PodcastInputField
+      </Search.Label>
+      <Search.Input
         type={type ? type : 'text'}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-    </PodcastSearchField>
+    </Search.Container>
   )
 }
 
-export default PodcastSearch;
+export default PodcastSearch
