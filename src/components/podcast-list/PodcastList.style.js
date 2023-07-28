@@ -1,8 +1,7 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 export const List = {
-  Container : styled.ul`
+  Container: styled.ul`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
     gap: 3rem 1rem;
@@ -12,15 +11,15 @@ export const List = {
     border-block-start: 0.0625rem solid hsl(0, 0%, 90%);
   `,
 
-  Item : styled.li`
+  Item: styled.li`
     display: flex;
   `,
 
-  SearchRegion : styled.div`
+  SearchRegion: styled.div`
     padding-block-end: 1rem;
   `,
 
-  SearchResultLength : styled.p`
+  SearchResultLength: styled.p`
     display: grid;
     place-items: center;
     font-size: 0.75rem;

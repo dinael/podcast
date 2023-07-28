@@ -25,9 +25,11 @@ const PodcastDetail = () => {
 
   return (
     <>
-      <Detail.GoBack to='/'>
-        Volver
-      </Detail.GoBack>
+      <Detail.Breadcrumb>
+        <Detail.GoBack to='/'>
+          Volver
+        </Detail.GoBack>
+      </Detail.Breadcrumb>
       <Detail.Container>
         <PodcastDetailHeader
           title={detail.title}

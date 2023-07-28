@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Episode = {
-  Table : styled.table`
+  Table: styled.table`
     inline-size: 100%;
     block-size: fit-content;
     margin:0;
@@ -14,7 +14,7 @@ export const Episode = {
     background-image:none;
   `,
 
-  TableHeader : styled.thead`
+  TableHeader: styled.thead`
     border-block-end: 1px solid red;
 
     th {
@@ -23,14 +23,14 @@ export const Episode = {
     }
   `,
 
-  TableHeaderTitle : styled.th`
+  TableHeaderTitle: styled.th`
     inline-size: 60%;
     text-align: left;
   `,
 
-  TableHeaderCol : styled.th``,
+  TableHeaderCol: styled.th``,
 
-  TableRow : styled.tr`
+  TableRow: styled.tr`
     transition: background .3s ease-in-out, color .3s ease-in-out;
 
     &:nth-child(even) {
@@ -47,11 +47,11 @@ export const Episode = {
     }
   `,
 
-  TableCol : styled.td`
+  TableCol: styled.td`
       padding: 0.5rem;
   `,
 
-  TableColTitle : styled.td`
+  TableColTitle: styled.td`
     text-align: left;
     padding: 0.75rem 0.5rem 0.75rem 1rem;
   `,

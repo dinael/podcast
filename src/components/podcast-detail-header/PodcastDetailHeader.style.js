@@ -1,21 +1,21 @@
 import styled from 'styled-components'
 
 export const Header = {
-  Container : styled.header`
+  Container: styled.header`
     display: grid;
     gap: 1rem 0;
     place-content: start;
     justify-content: center;
   `,
 
-  Title : styled.h2`
+  Title: styled.h2`
     margin: 0;
     padding: 0;
   `,
 
   Cover: styled.img`
     display: block;
-    max-block-size: 12.5rem;
+    max-block-size: 17.5rem;
     inline-size: auto;
     margin-inline: auto;
     order: -1;
@@ -24,7 +24,7 @@ export const Header = {
     transition: border-radius .5s ease-in-out;
   `,
 
-  DetailList : styled.dl`
+  DetailList: styled.dl`
     margin: 0;
     padding: 0;
     display: grid;
@@ -46,7 +46,7 @@ export const Header = {
     }
   `,
 
-  Author : styled.address`
+  Author: styled.address`
     margin: 0;
     padding: 0;
   `,

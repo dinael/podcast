@@ -8,8 +8,7 @@ export const Header = {
     align-items: center;
     block-size: 4.5rem;
     padding-inline: 1rem;
-    margin-block-end: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-block-end: 1px solid rgba(0, 0, 0, 0.1);
   `,
 
   Title: styled.h1`
@@ -28,7 +27,7 @@ export const Header = {
     }
   `,
 
-  Loading : styled.p `
+  Loading: styled.p `
     font-size: 0.75rem;
   `,
 }

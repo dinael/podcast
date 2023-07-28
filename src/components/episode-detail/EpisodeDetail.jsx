@@ -40,39 +40,37 @@ const EpisodeDetail = () => {
   }
 
   return (
-    <Detail.Container>
-      <header>
-        <h2>
-          {episodeDetails.title}
-        </h2>
-        <p>
-          {episodeDetails.trackName}
-        </p>
+    <>
+      <Detail.Breadcrumb>
         <Detail.GoBack to={`/podcast/${podcastId}`}>
-          volver
+          Volver
         </Detail.GoBack>
-      </header>
-      <article>
-        <h3>Description</h3>
-        <img
-          src={episodeDetails.artWork}
-          alt={`${episodeDetails.title} cover`}
-        />
-        <dl>
-          <dt>Id:</dt>
-          <dd>{trackId}</dd>
-        </dl>
-        <p>{podcastItem[1].description}</p>
-      </article>
-      <article>
-        <audio controls>
-          <source
-            src={`${podcastItem[1].episodeUrl}`}
-            type="audio/mpeg" />
-          Your browser does not support the audio tag.
-        </audio>
-      </article>
-    </Detail.Container>
+      </Detail.Breadcrumb>
+      <Detail.Container>
+        <Detail.Header>
+          <Detail.Title>
+            {episodeDetails.title}
+          </Detail.Title>
+          <p>
+            {episodeDetails.trackName}
+          </p>
+          <Detail.Cover
+            src={episodeDetails.artWork}
+            alt={`${episodeDetails.title} cover`}
+          />
+        </Detail.Header>
+        <article>
+          <Detail.player controls>
+            <source
+              src={`${podcastItem[1].episodeUrl}`}
+              type="audio/mpeg" />
+            Your browser does not support the audio tag.
+          </Detail.player>
+          <h3>Description</h3>
+          <p>{podcastItem[1].description}</p>
+        </article>
+      </Detail.Container>
+    </>
   )
 }
 
