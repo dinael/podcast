@@ -30,14 +30,14 @@ const PodcastDetailProvider = ({ children }) => {
     }
   }
 
-  const detail = {
-    title: podcastItem && podcastItem[0].collectionName,
-    imgSrc: podcastItem && podcastItem[0].artworkUrl600,
-    imgAlt: podcastItem && podcastItem[0].collectionName,
-    author: podcastItem && podcastItem[0].artistName,
-    genre: podcastItem && podcastItem[0].primaryGenreName,
-    description: podcastItem && podcastItem[1].description,
-    date: podcastItem && podcastItem[0].releaseDate,
+  const podcastDetail = podcastItem && {
+    title: podcastItem[1].collectionName,
+    imgSrc: podcastItem[0].artworkUrl600,
+    imgAlt: podcastItem[0].collectionName,
+    author: podcastItem[0].artistName,
+    genre: podcastItem[0].primaryGenreName,
+    description: podcastItem[1].description,
+    date: podcastItem[0].releaseDate,
   }
 
   return (
@@ -46,7 +46,7 @@ const PodcastDetailProvider = ({ children }) => {
         fetchData,
         error,
         podcastItem,
-        detail,
+        detail: podcastDetail,
       }}>
       {children}
     </PodcastDetailContext.Provider>

@@ -19,11 +19,10 @@ const ListEpisodes = ({ episodes }) => {
               </tr>
             </Episode.TableHeader>
             <tbody>
-              {episodes.slice(1).map((episode) => (
+              {episodes.slice(1).map((episode, index) => (
                 <Episode.TableRow key={episode.trackName}>
                   <Episode.TableColTitle>
-                    <Episode.TitleLink
-                      to={`episode/${episode.trackId}`}>
+                    <Episode.TitleLink to={`episode/${episode.trackId}`}>
                       {episode.trackName}
                     </Episode.TitleLink>
                   </Episode.TableColTitle>

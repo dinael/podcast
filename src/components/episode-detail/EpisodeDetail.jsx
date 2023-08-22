@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { usePodcastDetailContext } from '../../context/podcast-detail-context/PodcastDetailContext'
 
 import { Detail } from './EpisodeDetail.style.js'
 
 const EpisodeDetail = () => {
-  const { trackId, podcastId } = useParams()
-  const { error, podcastItem, fetchData } = usePodcastDetailContext()
-  const [ detail, setDetail] = useState()
-
-  useEffect(() => {
-    fetchData(podcastId)
-  }, [podcastId, fetchData])
+  const { podcastId, trackId } = useParams()
+  const { error, podcastItem } = usePodcastDetailContext()
 
   if (error) {
     return <p>Error: {error}</p>
@@ -21,53 +15,52 @@ const EpisodeDetail = () => {
     return <p>Loading...</p>
   }
 
-  const episodeDetails = {
-    title: podcastItem[1].collectionName,
-    trackName: podcastItem[1].trackName,
-    artWork: podcastItem[1].artworkUrl600,
-    description: podcastItem[1].collectionDescription,
-    audioUrl: podcastItem[1].audioUrl,
+  const episodeRaw = podcastItem.slice(1)
+
+  function getPodcastById(trackId) {
+    return episodeRaw.find(item => {
+      return item.trackId === trackId
+    })
   }
 
-  const episode = ()=> {
-    const details = podcastItem.map((episode) => ({
-      title: episode.collectionName,
-      trackName: episode.trackName,
-      artWork: episode.artworkUrl600,
-      description: episode.collectionDescription,
-      audioUrl: episode.audioUrl,
-    }))
-  }
+  const episode = getPodcastById(parseInt(trackId));
 
   return (
     <>
       <Detail.Breadcrumb>
+        <Detail.GoBack to={ '/' }>Home</Detail.GoBack>
+        <span>{ '>' }</span>
         <Detail.GoBack to={`/podcast/${podcastId}`}>
-          Volver
+          { podcastItem[1].collectionName }
         </Detail.GoBack>
+        <span>{ '>' }</span>
+        <Detail.BreadcrumbCurrent>
+          {episode.trackName}
+        </Detail.BreadcrumbCurrent>
       </Detail.Breadcrumb>
       <Detail.Container>
         <Detail.Header>
           <Detail.Title>
-            {episodeDetails.title}
+            {episode.trackName}
           </Detail.Title>
-          <p>
-            {episodeDetails.trackName}
-          </p>
+          <Detail.SubTitle>
+            by: {podcastItem[1].collectionName}
+          </Detail.SubTitle>
           <Detail.Cover
-            src={episodeDetails.artWork}
-            alt={`${episodeDetails.title} cover`}
+            src={episode.artworkUrl600}
+            alt={`${podcastItem[1].collectionName} cover`}
           />
+          <p></p>
         </Detail.Header>
         <article>
-          <Detail.player controls>
+          <Detail.Player controls>
             <source
-              src={`${podcastItem[1].episodeUrl}`}
+              src={`${episode.episodeUrl}`}
               type="audio/mpeg" />
             Your browser does not support the audio tag.
-          </Detail.player>
+          </Detail.Player>
           <h3>Description</h3>
-          <p>{podcastItem[1].description}</p>
+          <p>{episode.description}</p>
         </article>
       </Detail.Container>
     </>

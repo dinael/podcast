@@ -13,7 +13,7 @@ const PodcastDetail = () => {
 
   useEffect(() => {
     fetchData(podcastId)
-  }, [podcastId, fetchData])
+  }, [podcastId])
 
   if (error) {
     return <p>Error: {error}</p>
@@ -27,7 +27,7 @@ const PodcastDetail = () => {
     <>
       <Detail.Breadcrumb>
         <Detail.GoBack to='/'>
-          Volver
+          Home
         </Detail.GoBack>
       </Detail.Breadcrumb>
       <Detail.Container>
