@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from '../view/Home'
 import Podcast from '../view/Podcast'
 import Episode from '../view/Episode'
+import NotFound from '../view/NotFound'
 
 const routes = createBrowserRouter([
   {
@@ -14,8 +15,12 @@ const routes = createBrowserRouter([
     element: <Podcast />,
   },
   {
-    path: "/podcast/:podcastId/episode/:trackId",
+    path: "/podcast/:podcastId/episode/:trackId/",
     element: <Episode />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   }
 
 ]);
